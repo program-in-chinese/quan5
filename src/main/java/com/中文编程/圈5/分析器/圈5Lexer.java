@@ -17,7 +17,7 @@ public class 圈5Lexer extends Lexer {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		T数=1, T空白=2;
+		T__0=1, T数=2, T空白=3;
 	public static String[] channelNames = {
 		"DEFAULT_TOKEN_CHANNEL", "HIDDEN"
 	};
@@ -27,13 +27,14 @@ public class 圈5Lexer extends Lexer {
 	};
 
 	public static final String[] ruleNames = {
-		"T数", "T空白"
+		"T__0", "T数", "T空白"
 	};
 
 	private static final String[] _LITERAL_NAMES = {
+		null, "'+'"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
-		null, "T\u0001", "T\u0001\u0002"
+		null, null, "T\u0001", "T\u0001\u0002"
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -93,13 +94,14 @@ public class 圈5Lexer extends Lexer {
 	public ATN getATN() { return _ATN; }
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\2\4\23\b\1\4\2\t\2"+
-		"\4\3\t\3\3\2\6\2\t\n\2\r\2\16\2\n\3\3\6\3\16\n\3\r\3\16\3\17\3\3\3\3\2"+
-		"\2\4\3\3\5\4\3\2\4\3\2\62;\4\2\13\f\"\"\2\24\2\3\3\2\2\2\2\5\3\2\2\2\3"+
-		"\b\3\2\2\2\5\r\3\2\2\2\7\t\t\2\2\2\b\7\3\2\2\2\t\n\3\2\2\2\n\b\3\2\2\2"+
-		"\n\13\3\2\2\2\13\4\3\2\2\2\f\16\t\3\2\2\r\f\3\2\2\2\16\17\3\2\2\2\17\r"+
-		"\3\2\2\2\17\20\3\2\2\2\20\21\3\2\2\2\21\22\b\3\2\2\22\6\3\2\2\2\5\2\n"+
-		"\17\3\b\2\2";
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\2\5\27\b\1\4\2\t\2"+
+		"\4\3\t\3\4\4\t\4\3\2\3\2\3\3\6\3\r\n\3\r\3\16\3\16\3\4\6\4\22\n\4\r\4"+
+		"\16\4\23\3\4\3\4\2\2\5\3\3\5\4\7\5\3\2\4\3\2\62;\4\2\13\f\"\"\2\30\2\3"+
+		"\3\2\2\2\2\5\3\2\2\2\2\7\3\2\2\2\3\t\3\2\2\2\5\f\3\2\2\2\7\21\3\2\2\2"+
+		"\t\n\7-\2\2\n\4\3\2\2\2\13\r\t\2\2\2\f\13\3\2\2\2\r\16\3\2\2\2\16\f\3"+
+		"\2\2\2\16\17\3\2\2\2\17\6\3\2\2\2\20\22\t\3\2\2\21\20\3\2\2\2\22\23\3"+
+		"\2\2\2\23\21\3\2\2\2\23\24\3\2\2\2\24\25\3\2\2\2\25\26\b\4\2\2\26\b\3"+
+		"\2\2\2\5\2\16\23\3\b\2\2";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
