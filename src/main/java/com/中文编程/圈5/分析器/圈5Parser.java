@@ -17,7 +17,7 @@ public class 圈5Parser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		T数=1, T空白=2, T加=3;
+		T数=1, T加=2;
 	public static final int
 		RULE_程序 = 0, RULE_表达式 = 1;
 	public static final String[] ruleNames = {
@@ -25,10 +25,10 @@ public class 圈5Parser extends Parser {
 	};
 
 	private static final String[] _LITERAL_NAMES = {
-		null, null, null, "'+'"
+		null, null, "'+'"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
-		null, "T\u0001", "T\u0001\u0002", "T\u0001"
+		null, "T\u0001", "T\u0001"
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -227,10 +227,10 @@ public class 圈5Parser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\5\24\4\2\t\2\4\3"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\4\24\4\2\t\2\4\3"+
 		"\t\3\3\2\3\2\3\3\3\3\3\3\3\3\3\3\3\3\7\3\17\n\3\f\3\16\3\22\13\3\3\3\2"+
 		"\3\4\4\2\4\2\2\2\22\2\6\3\2\2\2\4\b\3\2\2\2\6\7\5\4\3\2\7\3\3\2\2\2\b"+
-		"\t\b\3\1\2\t\n\7\3\2\2\n\20\3\2\2\2\13\f\f\4\2\2\f\r\7\5\2\2\r\17\5\4"+
+		"\t\b\3\1\2\t\n\7\3\2\2\n\20\3\2\2\2\13\f\f\4\2\2\f\r\7\4\2\2\r\17\5\4"+
 		"\3\5\16\13\3\2\2\2\17\22\3\2\2\2\20\16\3\2\2\2\20\21\3\2\2\2\21\5\3\2"+
 		"\2\2\22\20\3\2\2\2\3\20";
 	public static final ATN _ATN =
