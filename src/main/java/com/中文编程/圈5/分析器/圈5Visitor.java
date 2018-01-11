@@ -24,10 +24,10 @@ public interface 圈5Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visit数(圈5Parser.数Context ctx);
 	/**
-	 * Visit a parse tree produced by the {@code 加}
+	 * Visit a parse tree produced by the {@code 加減}
 	 * labeled alternative in {@link 圈5Parser#表达式}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visit加(圈5Parser.加Context ctx);
+	T visit加減(圈5Parser.加減Context ctx);
 }
