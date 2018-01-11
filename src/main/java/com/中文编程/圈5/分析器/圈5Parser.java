@@ -17,7 +17,7 @@ public class 圈5Parser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		T数=1, T加=2, T減=3;
+		T数=1, T加=2, T減=3, T乘=4, T数乘=5, T除=6, T数除=7;
 	public static final int
 		RULE_程序 = 0, RULE_表达式 = 1;
 	public static final String[] ruleNames = {
@@ -25,10 +25,11 @@ public class 圈5Parser extends Parser {
 	};
 
 	private static final String[] _LITERAL_NAMES = {
-		null, null, "'+'", "'-'"
+		null, null, "'+'", "'-'", "'*'", "'\u00D7'", "'/'", "'\u00F7'"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
-		null, "T\u0001", "T\u0001", "T\u0001"
+		null, "T\u0001", "T\u0001", "T\u0001", "T\u0001", "T\u0001\u0002", "T\u0001", 
+		"T\u0001\u0002"
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -150,6 +151,21 @@ public class 圈5Parser extends Parser {
 			else return visitor.visitChildren(this);
 		}
 	}
+	public static class 乘除Context extends 表达式Context {
+		public Token 运算符;
+		public List<表达式Context> 表达式() {
+			return getRuleContexts(表达式Context.class);
+		}
+		public 表达式Context 表达式(int i) {
+			return getRuleContext(表达式Context.class,i);
+		}
+		public 乘除Context(表达式Context ctx) { copyFrom(ctx); }
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof 圈5Visitor ) return ((圈5Visitor<? extends T>)visitor).visit乘除(this);
+			else return visitor.visitChildren(this);
+		}
+	}
 
 	public final 表达式Context 表达式() throws RecognitionException {
 		return 表达式(0);
@@ -176,38 +192,65 @@ public class 圈5Parser extends Parser {
 			match(T数);
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(14);
+			setState(17);
 			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,0,_ctx);
+			_alt = getInterpreter().adaptivePredict(_input,1,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
 					_prevctx = _localctx;
 					{
-					{
-					_localctx = new 加減Context(new 表达式Context(_parentctx, _parentState));
-					pushNewRecursionContext(_localctx, _startState, RULE_表达式);
-					setState(9);
-					if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");
-					setState(10);
-					((加減Context)_localctx).运算符 = _input.LT(1);
-					_la = _input.LA(1);
-					if ( !(_la==T加 || _la==T減) ) {
-						((加減Context)_localctx).运算符 = (Token)_errHandler.recoverInline(this);
-					}
-					else {
-						if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
-						_errHandler.reportMatch(this);
-						consume();
-					}
-					setState(11);
-					表达式(3);
+					setState(15);
+					_errHandler.sync(this);
+					switch ( getInterpreter().adaptivePredict(_input,0,_ctx) ) {
+					case 1:
+						{
+						_localctx = new 乘除Context(new 表达式Context(_parentctx, _parentState));
+						pushNewRecursionContext(_localctx, _startState, RULE_表达式);
+						setState(9);
+						if (!(precpred(_ctx, 3))) throw new FailedPredicateException(this, "precpred(_ctx, 3)");
+						setState(10);
+						((乘除Context)_localctx).运算符 = _input.LT(1);
+						_la = _input.LA(1);
+						if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T乘) | (1L << T数乘) | (1L << T除) | (1L << T数除))) != 0)) ) {
+							((乘除Context)_localctx).运算符 = (Token)_errHandler.recoverInline(this);
+						}
+						else {
+							if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+							_errHandler.reportMatch(this);
+							consume();
+						}
+						setState(11);
+						表达式(4);
+						}
+						break;
+					case 2:
+						{
+						_localctx = new 加減Context(new 表达式Context(_parentctx, _parentState));
+						pushNewRecursionContext(_localctx, _startState, RULE_表达式);
+						setState(12);
+						if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");
+						setState(13);
+						((加減Context)_localctx).运算符 = _input.LT(1);
+						_la = _input.LA(1);
+						if ( !(_la==T加 || _la==T減) ) {
+							((加減Context)_localctx).运算符 = (Token)_errHandler.recoverInline(this);
+						}
+						else {
+							if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+							_errHandler.reportMatch(this);
+							consume();
+						}
+						setState(14);
+						表达式(3);
+						}
+						break;
 					}
 					} 
 				}
-				setState(16);
+				setState(19);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,0,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,1,_ctx);
 			}
 			}
 		}
@@ -232,18 +275,21 @@ public class 圈5Parser extends Parser {
 	private boolean 表达式_sempred(表达式Context _localctx, int predIndex) {
 		switch (predIndex) {
 		case 0:
+			return precpred(_ctx, 3);
+		case 1:
 			return precpred(_ctx, 2);
 		}
 		return true;
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\5\24\4\2\t\2\4\3"+
-		"\t\3\3\2\3\2\3\3\3\3\3\3\3\3\3\3\3\3\7\3\17\n\3\f\3\16\3\22\13\3\3\3\2"+
-		"\3\4\4\2\4\2\3\3\2\4\5\2\22\2\6\3\2\2\2\4\b\3\2\2\2\6\7\5\4\3\2\7\3\3"+
-		"\2\2\2\b\t\b\3\1\2\t\n\7\3\2\2\n\20\3\2\2\2\13\f\f\4\2\2\f\r\t\2\2\2\r"+
-		"\17\5\4\3\5\16\13\3\2\2\2\17\22\3\2\2\2\20\16\3\2\2\2\20\21\3\2\2\2\21"+
-		"\5\3\2\2\2\22\20\3\2\2\2\3\20";
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\t\27\4\2\t\2\4\3"+
+		"\t\3\3\2\3\2\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\7\3\22\n\3\f\3\16\3\25"+
+		"\13\3\3\3\2\3\4\4\2\4\2\4\3\2\6\t\3\2\4\5\2\26\2\6\3\2\2\2\4\b\3\2\2\2"+
+		"\6\7\5\4\3\2\7\3\3\2\2\2\b\t\b\3\1\2\t\n\7\3\2\2\n\23\3\2\2\2\13\f\f\5"+
+		"\2\2\f\r\t\2\2\2\r\22\5\4\3\6\16\17\f\4\2\2\17\20\t\3\2\2\20\22\5\4\3"+
+		"\5\21\13\3\2\2\2\21\16\3\2\2\2\22\25\3\2\2\2\23\21\3\2\2\2\23\24\3\2\2"+
+		"\2\24\5\3\2\2\2\25\23\3\2\2\2\4\21\23";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
