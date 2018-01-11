@@ -28,7 +28,7 @@ public class 运行器 {
 
     节点 语法树 = 语法分析(输入流);
     if (语法树 != null) {
-      System.out.println(语法树.get原始文本());
+      System.out.println(语法树.求值());
     }
   }
 

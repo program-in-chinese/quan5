@@ -24,5 +24,12 @@ public class 圈5BaseVisitor<T> extends AbstractParseTreeVisitor<T> implements �
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visit表达式(圈5Parser.表达式Context ctx) { return visitChildren(ctx); }
+	@Override public T visit数(圈5Parser.数Context ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visit加(圈5Parser.加Context ctx) { return visitChildren(ctx); }
 }
