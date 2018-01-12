@@ -24,6 +24,27 @@ public class 圈5BaseVisitor<T> extends AbstractParseTreeVisitor<T> implements �
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
+	@Override public T visit求值(圈5Parser.求值Context ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visit赋值(圈5Parser.赋值Context ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visit空行(圈5Parser.空行Context ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
 	@Override public T visit数(圈5Parser.数Context ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
@@ -39,4 +60,11 @@ public class 圈5BaseVisitor<T> extends AbstractParseTreeVisitor<T> implements �
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 	@Override public T visit乘除(圈5Parser.乘除Context ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visit变量(圈5Parser.变量Context ctx) { return visitChildren(ctx); }
 }

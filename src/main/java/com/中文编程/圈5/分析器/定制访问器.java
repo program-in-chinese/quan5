@@ -6,12 +6,18 @@ import org.antlr.v4.runtime.tree.TerminalNode;
 import com.中文编程.圈5.分析器.圈5Parser.乘除Context;
 import com.中文编程.圈5.分析器.圈5Parser.加減Context;
 import com.中文编程.圈5.分析器.圈5Parser.数Context;
+import com.中文编程.圈5.分析器.圈5Parser.求值Context;
 import com.中文编程.圈5.语法树.数节点;
 import com.中文编程.圈5.语法树.节点;
 import com.中文编程.圈5.语法树.表达式节点;
 import com.中文编程.圈5.语法树.运算符号;
 
 public class 定制访问器 extends 圈5BaseVisitor<节点> {
+
+  @Override
+  public 节点 visit求值(求值Context 上下文) {
+    return visit(上下文.表达式());
+  }
 
   @Override
   public 节点 visit数(数Context 上下文) {

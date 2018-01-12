@@ -7,6 +7,7 @@ import org.junit.Test;
 import com.中文编程.圈5.主程序.运行器;
 
 public class 运行器测试 {
+  private static final String 换行 = "\n";
 
   @Test
   public void 四则运算() {
@@ -23,6 +24,6 @@ public class 运行器测试 {
   }
 
   private void 检验源码求值(String 源码, Object 值) {
-    相等(运行器.语法分析(源码).求值(), 值);
+    相等(运行器.语法分析(源码 + 换行).求值(), 值);
   }
 }
