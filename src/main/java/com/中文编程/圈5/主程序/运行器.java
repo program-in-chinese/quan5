@@ -48,19 +48,16 @@ public class 运行器 {
       运算符号 运算符 = ((运算式节点)节点).运算符;
       Object 左结果 = 求值(((运算式节点)节点).左子节点);
       Object 右结果 = 求值(((运算式节点)节点).右子节点);
-      if (运算符.equals(运算符号.加)) {
-        return (int)左结果 + (int)右结果;
-      } else if (运算符.equals(运算符号.減)) {
-        return (int)左结果 - (int)右结果;
-      } else if (运算符.equals(运算符号.乘)) {
-        return (int)左结果 * (int)右结果;
-      } else if (运算符.equals(运算符号.除)) {
-        return (int)左结果 / (int)右结果;
-      } else if (运算符.equals(运算符号.赋值)) {
-        变量值表.put(((变量节点)((运算式节点)节点).左子节点).取变量名(), 右结果);
-        return null;
-      }  else {
-        return null;
+      switch(运算符) {
+        case 加: return (int)左结果 + (int)右结果;
+        case 減: return (int)左结果 - (int)右结果;
+        case 乘: return (int)左结果 * (int)右结果;
+        case 除: return (int)左结果 / (int)右结果;
+        case 赋值:
+          变量值表.put(((变量节点)((运算式节点)节点).左子节点).取变量名(), 右结果);
+          // 顺延
+        default:
+          return null;
       }
     } else if (节点 instanceof 变量节点) {
       return 变量值表.get(((变量节点)节点).取变量名());
