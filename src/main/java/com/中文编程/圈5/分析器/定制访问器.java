@@ -9,6 +9,7 @@ import org.antlr.v4.runtime.tree.TerminalNode;
 import com.中文编程.圈5.分析器.圈5Parser.乘除Context;
 import com.中文编程.圈5.分析器.圈5Parser.加減Context;
 import com.中文编程.圈5.分析器.圈5Parser.变量Context;
+import com.中文编程.圈5.分析器.圈5Parser.括号Context;
 import com.中文编程.圈5.分析器.圈5Parser.数Context;
 import com.中文编程.圈5.分析器.圈5Parser.求值Context;
 import com.中文编程.圈5.分析器.圈5Parser.赋值Context;
@@ -68,6 +69,11 @@ public class 定制访问器 extends 圈5BaseVisitor<节点> {
     节点.左子节点 = visit(上下文.表达式(0));
     节点.右子节点 = visit(上下文.表达式(1));
     return 节点;
+  }
+
+  @Override
+  public 节点 visit括号(括号Context 上下文) {
+    return visit(上下文.表达式());
   }
 
 }
