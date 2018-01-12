@@ -1,6 +1,8 @@
 package com.中文编程.圈5.主程序;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
@@ -9,13 +11,20 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import com.中文编程.圈5.分析器.圈5Lexer;
 import com.中文编程.圈5.分析器.圈5Parser;
 import com.中文编程.圈5.分析器.定制访问器;
+import com.中文编程.圈5.语法树.变量节点;
+import com.中文编程.圈5.语法树.数节点;
 import com.中文编程.圈5.语法树.节点;
+import com.中文编程.圈5.语法树.运算式节点;
+import com.中文编程.圈5.语法树.运算符号;
 import com.中文编程.圈5.错误处理.词法错误监听器;
 import com.中文编程.圈5.错误处理.语法错误监听器;
 
 public class 运行器 {
   private static final 语法错误监听器 语法错误处理 = new 语法错误监听器();
   private static final 词法错误监听器 词法错误处理 = new 词法错误监听器();
+
+  private Map<String, Object> 变量值表 = new HashMap<>();
+  private Object 返回值;
 
   public static void main(String[] 参数) {
     CharStream 输入流;
@@ -27,8 +36,41 @@ public class 运行器 {
     }
 
     节点 语法树 = 语法分析(输入流);
+
+    运行器 运行器实例 = new 运行器();
     if (语法树 != null) {
-      System.out.println(语法树.求值());
+      System.out.println(运行器实例.求值(语法树));
+    }
+  }
+
+  public Object 求值(节点 节点) {
+    if (节点 instanceof 运算式节点) {
+      运算符号 运算符 = ((运算式节点)节点).运算符;
+      Object 左结果 = 求值(((运算式节点)节点).左子节点);
+      Object 右结果 = 求值(((运算式节点)节点).右子节点);
+      if (运算符.equals(运算符号.加)) {
+        return (int)左结果 + (int)右结果;
+      } else if (运算符.equals(运算符号.減)) {
+        return (int)左结果 - (int)右结果;
+      } else if (运算符.equals(运算符号.乘)) {
+        return (int)左结果 * (int)右结果;
+      } else if (运算符.equals(运算符号.除)) {
+        return (int)左结果 / (int)右结果;
+      } else if (运算符.equals(运算符号.赋值)) {
+        变量值表.put(((变量节点)((运算式节点)节点).左子节点).取变量名(), 右结果);
+        return null;
+      }  else {
+        return null;
+      }
+    } else if (节点 instanceof 变量节点) {
+      return 变量值表.get(((变量节点)节点).取变量名());
+    } else if (节点 instanceof 数节点) {
+      return ((数节点)节点).求值();
+    } else {
+      for(节点 子节点 : 节点.子节点) {
+        返回值 = 求值(子节点);
+      }
+      return 返回值;
     }
   }
 
