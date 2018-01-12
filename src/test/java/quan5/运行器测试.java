@@ -5,6 +5,7 @@ import static com.github.program_in_chinese.junit4_in_chinese.断言.相等;
 import org.junit.Test;
 
 import com.中文编程.圈5.主程序.运行器;
+import com.中文编程.圈5.语法树.节点;
 
 public class 运行器测试 {
   private static final String 换行 = "\n";
@@ -31,9 +32,12 @@ public class 运行器测试 {
     检验源码求值("a=3" + 换行 + "a=2" + 换行 + "a*a", 4);
     检验源码求值("a=100" + 换行 + "a÷2+a*a÷2", 5050);
     检验源码求值("基数=100" + 换行 + "基数×(基数+1)÷2", 5050);
+    检验源码求值("利率=1" + 换行 + "年增长率=1+利率" + 换行 + "年增长率", 2);
+    检验源码求值("利率=1" + 换行 + "年增长率=1+利率" + 换行 + "1000×年增长率×年增长率", 4000);
   }
 
   private void 检验源码求值(String 源码, Object 值) {
-    相等(运行器.语法分析(源码 + 换行).求值(), 值);
+    节点 语法树 = 运行器.语法分析(源码 + 换行);
+    相等(语法树.求值(), 值);
   }
 }
