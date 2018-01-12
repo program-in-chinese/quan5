@@ -9,7 +9,6 @@ public class 数节点 extends 节点 {
     值 = Integer.parseInt(文本);
   }
 
-  @Override
   public Object 求值() {
     return 值;
   }

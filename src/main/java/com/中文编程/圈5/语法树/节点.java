@@ -13,8 +13,4 @@ public class 节点 {
   public 节点(String 文本) {
     原始文本 = 文本;
   }
-
-  public Object 求值() {
-    return 原始文本;
-  }
 }
