@@ -1,4 +1,4 @@
-// Generated from 圈5.g4 by ANTLR 4.7
+// Generated from com/中文编程/圈5/分析器/圈5.g4 by ANTLR 4.7
 package com.中文编程.圈5.分析器;
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 
@@ -45,7 +45,7 @@ public class 圈5BaseVisitor<T> extends AbstractParseTreeVisitor<T> implements �
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visit数(圈5Parser.数Context ctx) { return visitChildren(ctx); }
+	@Override public T visit乘除(圈5Parser.乘除Context ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -59,7 +59,14 @@ public class 圈5BaseVisitor<T> extends AbstractParseTreeVisitor<T> implements �
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visit乘除(圈5Parser.乘除Context ctx) { return visitChildren(ctx); }
+	@Override public T visit数(圈5Parser.数Context ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visit变量(圈5Parser.变量Context ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -73,5 +80,12 @@ public class 圈5BaseVisitor<T> extends AbstractParseTreeVisitor<T> implements �
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visit变量(圈5Parser.变量Context ctx) { return visitChildren(ctx); }
+	@Override public T visit算术表达式(圈5Parser.算术表达式Context ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visit求积表达式(圈5Parser.求积表达式Context ctx) { return visitChildren(ctx); }
 }

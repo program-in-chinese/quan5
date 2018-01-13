@@ -1,4 +1,4 @@
-// Generated from 圈5.g4 by ANTLR 4.7
+// Generated from com/中文编程/圈5/分析器/圈5.g4 by ANTLR 4.7
 package com.中文编程.圈5.分析器;
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;

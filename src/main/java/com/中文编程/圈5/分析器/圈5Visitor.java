@@ -1,4 +1,4 @@
-// Generated from 圈5.g4 by ANTLR 4.7
+// Generated from com/中文编程/圈5/分析器/圈5.g4 by ANTLR 4.7
 package com.中文编程.圈5.分析器;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
@@ -38,12 +38,12 @@ public interface 圈5Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visit空行(圈5Parser.空行Context ctx);
 	/**
-	 * Visit a parse tree produced by the {@code 数}
+	 * Visit a parse tree produced by the {@code 乘除}
 	 * labeled alternative in {@link 圈5Parser#表达式}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visit数(圈5Parser.数Context ctx);
+	T visit乘除(圈5Parser.乘除Context ctx);
 	/**
 	 * Visit a parse tree produced by the {@code 加減}
 	 * labeled alternative in {@link 圈5Parser#表达式}.
@@ -52,12 +52,19 @@ public interface 圈5Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visit加減(圈5Parser.加減Context ctx);
 	/**
-	 * Visit a parse tree produced by the {@code 乘除}
+	 * Visit a parse tree produced by the {@code 数}
 	 * labeled alternative in {@link 圈5Parser#表达式}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visit乘除(圈5Parser.乘除Context ctx);
+	T visit数(圈5Parser.数Context ctx);
+	/**
+	 * Visit a parse tree produced by the {@code 变量}
+	 * labeled alternative in {@link 圈5Parser#表达式}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visit变量(圈5Parser.变量Context ctx);
 	/**
 	 * Visit a parse tree produced by the {@code 括号}
 	 * labeled alternative in {@link 圈5Parser#表达式}.
@@ -66,10 +73,15 @@ public interface 圈5Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visit括号(圈5Parser.括号Context ctx);
 	/**
-	 * Visit a parse tree produced by the {@code 变量}
-	 * labeled alternative in {@link 圈5Parser#表达式}.
+	 * Visit a parse tree produced by {@link 圈5Parser#算术表达式}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visit变量(圈5Parser.变量Context ctx);
+	T visit算术表达式(圈5Parser.算术表达式Context ctx);
+	/**
+	 * Visit a parse tree produced by {@link 圈5Parser#求积表达式}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visit求积表达式(圈5Parser.求积表达式Context ctx);
 }
