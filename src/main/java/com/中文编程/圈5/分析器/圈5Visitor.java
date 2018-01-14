@@ -38,13 +38,6 @@ public interface 圈5Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visit空行(圈5Parser.空行Context ctx);
 	/**
-	 * Visit a parse tree produced by the {@code 乘除}
-	 * labeled alternative in {@link 圈5Parser#表达式}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visit乘除(圈5Parser.乘除Context ctx);
-	/**
 	 * Visit a parse tree produced by the {@code 加減}
 	 * labeled alternative in {@link 圈5Parser#表达式}.
 	 * @param ctx the parse tree
