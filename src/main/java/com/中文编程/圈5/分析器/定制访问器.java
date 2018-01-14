@@ -1,7 +1,5 @@
 package com.中文编程.圈5.分析器;
 
-import java.util.List;
-
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
@@ -53,12 +51,33 @@ public class 定制访问器 extends 圈5BaseVisitor<节点> {
 
   @Override
   public 节点 visit表达式(表达式Context 上下文) {
-    return 构建二叉树(上下文.children);
+    节点 求积节点 = visit(上下文.求积表达式());
+    if (上下文.表达式() != null) {
+      运算符号 运算符 = ((TerminalNodeImpl)上下文.getChild(1)).symbol.getType() == 圈5Parser.T加 ? 运算符号.加 : 运算符号.減;
+      运算式节点 节点 = new 运算式节点();
+      节点.运算符 = 运算符;
+      节点.左子节点 = visit(上下文.表达式());
+      节点.右子节点 = 求积节点;
+      return 节点;
+    } else {
+      return 求积节点;
+    }
   }
 
   @Override
   public 节点 visit求积表达式(求积表达式Context 上下文) {
-    return 构建求积二叉树(上下文.children);
+    节点 最小节点 = visit(上下文.最小表达式());
+    if (上下文.求积表达式() != null) {
+      int 最后运算符 = ((TerminalNodeImpl)上下文.getChild(1)).symbol.getType();
+      运算符号 运算符 = (最后运算符 == 圈5Parser.T乘 || 最后运算符 == 圈5Parser.T数乘) ? 运算符号.乘 : 运算符号.除;
+      运算式节点 节点 = new 运算式节点();
+      节点.运算符 = 运算符;
+      节点.左子节点 = visit(上下文.求积表达式());
+      节点.右子节点 = 最小节点;
+      return 节点;
+    } else {
+      return 最小节点;
+    }
   }
 
   @Override
@@ -79,40 +98,6 @@ public class 定制访问器 extends 圈5BaseVisitor<节点> {
       return 数 instanceof ErrorNode ? null : new 数节点(数.getText());
     } else {
       return 数 instanceof ErrorNode ? null : new 变量节点(数.getText());
-    }
-  }
-
-  // 求积表达式 (+/- 求积表达式) ...
-  private 节点 构建二叉树(List<ParseTree> 子节点) {
-    if (子节点.isEmpty()) {
-      return null;
-    } else if (子节点.size() == 1) {
-      return visit(子节点.get(0));
-    } else {
-      ParseTree 最后运算符节点 = 子节点.get(子节点.size() - 2);
-      运算符号 运算符 = ((TerminalNodeImpl)最后运算符节点).symbol.getType() == 圈5Parser.T加 ? 运算符号.加 : 运算符号.減;
-      运算式节点 节点 = new 运算式节点();
-      节点.运算符 = 运算符;
-      节点.左子节点 = 构建二叉树(子节点.subList(0, 子节点.size() - 2));
-      节点.右子节点 = visit(子节点.get(子节点.size() - 1));
-      return 节点;
-    }
-  }
-  // 数 (*// 数) ...
-  private 节点 构建求积二叉树(List<ParseTree> 子节点) {
-    if (子节点.isEmpty()) {
-      return null;
-    } else if (子节点.size() == 1) {
-      return visit(子节点.get(0));
-    } else {
-      ParseTree 最后运算符节点 = 子节点.get(子节点.size() - 2);
-      int 最后运算符 = ((TerminalNodeImpl)最后运算符节点).symbol.getType();
-      运算符号 运算符 = (最后运算符 == 圈5Parser.T乘 || 最后运算符 == 圈5Parser.T数乘) ? 运算符号.乘 : 运算符号.除;
-      运算式节点 节点 = new 运算式节点();
-      节点.运算符 = 运算符;
-      节点.左子节点 = 构建求积二叉树(子节点.subList(0, 子节点.size() - 2));
-      节点.右子节点 = visit(子节点.get(子节点.size() - 1));
-      return 节点;
     }
   }
 
