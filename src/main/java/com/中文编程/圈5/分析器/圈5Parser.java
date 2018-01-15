@@ -17,22 +17,25 @@ public class 圈5Parser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		T__0=1, T__1=2, T__2=3, T变量名=4, T数=5, T加=6, T減=7, T乘=8, T数乘=9, T除=10, 
-		T数除=11, T新行=12;
+		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9, 
+		T__9=10, T__10=11, T__11=12, T__12=13, T变量名=14, T数=15, T加=16, T減=17, T乘=18, 
+		T数乘=19, T除=20, T数除=21, T新行=22;
 	public static final int
-		RULE_程序 = 0, RULE_声明 = 1, RULE_表达式 = 2, RULE_求积表达式 = 3, RULE_最小表达式 = 4, 
-		RULE_字面量 = 5;
+		RULE_程序 = 0, RULE_声明 = 1, RULE_表达式 = 2, RULE_等同判断表达式 = 3, RULE_比较表达式 = 4, 
+		RULE_求和表达式 = 5, RULE_求积表达式 = 6, RULE_最小表达式 = 7, RULE_字面量 = 8;
 	public static final String[] ruleNames = {
-		"程序", "声明", "表达式", "求积表达式", "最小表达式", "字面量"
+		"程序", "声明", "表达式", "等同判断表达式", "比较表达式", "求和表达式", "求积表达式", "最小表达式", "字面量"
 	};
 
 	private static final String[] _LITERAL_NAMES = {
-		null, "'='", "'('", "')'", null, null, "'+'", "'-'", "'*'", "'\u00D7'", 
-		"'/'", "'\u00F7'"
+		null, "'='", "'=='", "'\u4E3A'", "'!='", "'\u2260'", "'<'", "'>'", "'<='", 
+		"'>='", "'\u2264'", "'\u2265'", "'('", "')'", null, null, "'+'", "'-'", 
+		"'*'", "'\u00D7'", "'/'", "'\u00F7'"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
-		null, null, null, null, "T\u0001\u0002\u0003", "T\u0001", "T\u0001", "T\u0001", 
-		"T\u0001", "T\u0001\u0002", "T\u0001", "T\u0001\u0002", "T\u0001\u0002"
+		null, null, null, null, null, null, null, null, null, null, null, null, 
+		null, null, "T\u0001\u0002\u0003", "T\u0001", "T\u0001", "T\u0001", "T\u0001", 
+		"T\u0001\u0002", "T\u0001", "T\u0001\u0002", "T\u0001\u0002"
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -108,20 +111,20 @@ public class 圈5Parser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(13); 
+			setState(19); 
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
 				{
 				{
-				setState(12);
+				setState(18);
 				声明();
 				}
 				}
-				setState(15); 
+				setState(21); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__1) | (1L << T变量名) | (1L << T数) | (1L << T新行))) != 0) );
+			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__11) | (1L << T变量名) | (1L << T数) | (1L << T新行))) != 0) );
 			}
 		}
 		catch (RecognitionException re) {
@@ -185,16 +188,16 @@ public class 圈5Parser extends Parser {
 		声明Context _localctx = new 声明Context(_ctx, getState());
 		enterRule(_localctx, 2, RULE_声明);
 		try {
-			setState(26);
+			setState(32);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,1,_ctx) ) {
 			case 1:
 				_localctx = new 求值Context(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(17);
-				表达式(0);
-				setState(18);
+				setState(23);
+				表达式();
+				setState(24);
 				match(T新行);
 				}
 				break;
@@ -202,13 +205,13 @@ public class 圈5Parser extends Parser {
 				_localctx = new 赋值Context(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(20);
+				setState(26);
 				match(T变量名);
-				setState(21);
+				setState(27);
 				match(T__0);
-				setState(22);
-				表达式(0);
-				setState(23);
+				setState(28);
+				表达式();
+				setState(29);
 				match(T新行);
 				}
 				break;
@@ -216,7 +219,7 @@ public class 圈5Parser extends Parser {
 				_localctx = new 空行Context(_localctx);
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(25);
+				setState(31);
 				match(T新行);
 				}
 				break;
@@ -234,11 +237,8 @@ public class 圈5Parser extends Parser {
 	}
 
 	public static class 表达式Context extends ParserRuleContext {
-		public 求积表达式Context 求积表达式() {
-			return getRuleContext(求积表达式Context.class,0);
-		}
-		public 表达式Context 表达式() {
-			return getRuleContext(表达式Context.class,0);
+		public 等同判断表达式Context 等同判断表达式() {
+			return getRuleContext(等同判断表达式Context.class,0);
 		}
 		public 表达式Context(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -252,26 +252,65 @@ public class 圈5Parser extends Parser {
 	}
 
 	public final 表达式Context 表达式() throws RecognitionException {
-		return 表达式(0);
+		表达式Context _localctx = new 表达式Context(_ctx, getState());
+		enterRule(_localctx, 4, RULE_表达式);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(34);
+			等同判断表达式(0);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
 	}
 
-	private 表达式Context 表达式(int _p) throws RecognitionException {
+	public static class 等同判断表达式Context extends ParserRuleContext {
+		public 比较表达式Context 比较表达式() {
+			return getRuleContext(比较表达式Context.class,0);
+		}
+		public 等同判断表达式Context 等同判断表达式() {
+			return getRuleContext(等同判断表达式Context.class,0);
+		}
+		public 等同判断表达式Context(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_等同判断表达式; }
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof 圈5Visitor ) return ((圈5Visitor<? extends T>)visitor).visit等同判断表达式(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final 等同判断表达式Context 等同判断表达式() throws RecognitionException {
+		return 等同判断表达式(0);
+	}
+
+	private 等同判断表达式Context 等同判断表达式(int _p) throws RecognitionException {
 		ParserRuleContext _parentctx = _ctx;
 		int _parentState = getState();
-		表达式Context _localctx = new 表达式Context(_ctx, _parentState);
-		表达式Context _prevctx = _localctx;
-		int _startState = 4;
-		enterRecursionRule(_localctx, 4, RULE_表达式, _p);
+		等同判断表达式Context _localctx = new 等同判断表达式Context(_ctx, _parentState);
+		等同判断表达式Context _prevctx = _localctx;
+		int _startState = 6;
+		enterRecursionRule(_localctx, 6, RULE_等同判断表达式, _p);
 		try {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
 			{
-			setState(29);
-			求积表达式(0);
+			setState(37);
+			比较表达式(0);
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(39);
+			setState(53);
 			_errHandler.sync(this);
 			_alt = getInterpreter().adaptivePredict(_input,3,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
@@ -279,39 +318,297 @@ public class 圈5Parser extends Parser {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
 					_prevctx = _localctx;
 					{
-					setState(37);
+					setState(51);
 					_errHandler.sync(this);
 					switch ( getInterpreter().adaptivePredict(_input,2,_ctx) ) {
 					case 1:
 						{
-						_localctx = new 表达式Context(_parentctx, _parentState);
-						pushNewRecursionContext(_localctx, _startState, RULE_表达式);
-						setState(31);
+						_localctx = new 等同判断表达式Context(_parentctx, _parentState);
+						pushNewRecursionContext(_localctx, _startState, RULE_等同判断表达式);
+						setState(39);
+						if (!(precpred(_ctx, 4))) throw new FailedPredicateException(this, "precpred(_ctx, 4)");
+						setState(40);
+						match(T__1);
+						setState(41);
+						比较表达式(0);
+						}
+						break;
+					case 2:
+						{
+						_localctx = new 等同判断表达式Context(_parentctx, _parentState);
+						pushNewRecursionContext(_localctx, _startState, RULE_等同判断表达式);
+						setState(42);
+						if (!(precpred(_ctx, 3))) throw new FailedPredicateException(this, "precpred(_ctx, 3)");
+						setState(43);
+						match(T__2);
+						setState(44);
+						比较表达式(0);
+						}
+						break;
+					case 3:
+						{
+						_localctx = new 等同判断表达式Context(_parentctx, _parentState);
+						pushNewRecursionContext(_localctx, _startState, RULE_等同判断表达式);
+						setState(45);
 						if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");
-						setState(32);
+						setState(46);
+						match(T__3);
+						setState(47);
+						比较表达式(0);
+						}
+						break;
+					case 4:
+						{
+						_localctx = new 等同判断表达式Context(_parentctx, _parentState);
+						pushNewRecursionContext(_localctx, _startState, RULE_等同判断表达式);
+						setState(48);
+						if (!(precpred(_ctx, 1))) throw new FailedPredicateException(this, "precpred(_ctx, 1)");
+						setState(49);
+						match(T__4);
+						setState(50);
+						比较表达式(0);
+						}
+						break;
+					}
+					} 
+				}
+				setState(55);
+				_errHandler.sync(this);
+				_alt = getInterpreter().adaptivePredict(_input,3,_ctx);
+			}
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			unrollRecursionContexts(_parentctx);
+		}
+		return _localctx;
+	}
+
+	public static class 比较表达式Context extends ParserRuleContext {
+		public 求和表达式Context 求和表达式() {
+			return getRuleContext(求和表达式Context.class,0);
+		}
+		public 比较表达式Context 比较表达式() {
+			return getRuleContext(比较表达式Context.class,0);
+		}
+		public 比较表达式Context(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_比较表达式; }
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof 圈5Visitor ) return ((圈5Visitor<? extends T>)visitor).visit比较表达式(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final 比较表达式Context 比较表达式() throws RecognitionException {
+		return 比较表达式(0);
+	}
+
+	private 比较表达式Context 比较表达式(int _p) throws RecognitionException {
+		ParserRuleContext _parentctx = _ctx;
+		int _parentState = getState();
+		比较表达式Context _localctx = new 比较表达式Context(_ctx, _parentState);
+		比较表达式Context _prevctx = _localctx;
+		int _startState = 8;
+		enterRecursionRule(_localctx, 8, RULE_比较表达式, _p);
+		try {
+			int _alt;
+			enterOuterAlt(_localctx, 1);
+			{
+			{
+			setState(57);
+			求和表达式(0);
+			}
+			_ctx.stop = _input.LT(-1);
+			setState(79);
+			_errHandler.sync(this);
+			_alt = getInterpreter().adaptivePredict(_input,5,_ctx);
+			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
+				if ( _alt==1 ) {
+					if ( _parseListeners!=null ) triggerExitRuleEvent();
+					_prevctx = _localctx;
+					{
+					setState(77);
+					_errHandler.sync(this);
+					switch ( getInterpreter().adaptivePredict(_input,4,_ctx) ) {
+					case 1:
+						{
+						_localctx = new 比较表达式Context(_parentctx, _parentState);
+						pushNewRecursionContext(_localctx, _startState, RULE_比较表达式);
+						setState(59);
+						if (!(precpred(_ctx, 6))) throw new FailedPredicateException(this, "precpred(_ctx, 6)");
+						setState(60);
+						match(T__5);
+						setState(61);
+						求和表达式(0);
+						}
+						break;
+					case 2:
+						{
+						_localctx = new 比较表达式Context(_parentctx, _parentState);
+						pushNewRecursionContext(_localctx, _startState, RULE_比较表达式);
+						setState(62);
+						if (!(precpred(_ctx, 5))) throw new FailedPredicateException(this, "precpred(_ctx, 5)");
+						setState(63);
+						match(T__6);
+						setState(64);
+						求和表达式(0);
+						}
+						break;
+					case 3:
+						{
+						_localctx = new 比较表达式Context(_parentctx, _parentState);
+						pushNewRecursionContext(_localctx, _startState, RULE_比较表达式);
+						setState(65);
+						if (!(precpred(_ctx, 4))) throw new FailedPredicateException(this, "precpred(_ctx, 4)");
+						setState(66);
+						match(T__7);
+						setState(67);
+						求和表达式(0);
+						}
+						break;
+					case 4:
+						{
+						_localctx = new 比较表达式Context(_parentctx, _parentState);
+						pushNewRecursionContext(_localctx, _startState, RULE_比较表达式);
+						setState(68);
+						if (!(precpred(_ctx, 3))) throw new FailedPredicateException(this, "precpred(_ctx, 3)");
+						setState(69);
+						match(T__8);
+						setState(70);
+						求和表达式(0);
+						}
+						break;
+					case 5:
+						{
+						_localctx = new 比较表达式Context(_parentctx, _parentState);
+						pushNewRecursionContext(_localctx, _startState, RULE_比较表达式);
+						setState(71);
+						if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");
+						setState(72);
+						match(T__9);
+						setState(73);
+						求和表达式(0);
+						}
+						break;
+					case 6:
+						{
+						_localctx = new 比较表达式Context(_parentctx, _parentState);
+						pushNewRecursionContext(_localctx, _startState, RULE_比较表达式);
+						setState(74);
+						if (!(precpred(_ctx, 1))) throw new FailedPredicateException(this, "precpred(_ctx, 1)");
+						setState(75);
+						match(T__10);
+						setState(76);
+						求和表达式(0);
+						}
+						break;
+					}
+					} 
+				}
+				setState(81);
+				_errHandler.sync(this);
+				_alt = getInterpreter().adaptivePredict(_input,5,_ctx);
+			}
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			unrollRecursionContexts(_parentctx);
+		}
+		return _localctx;
+	}
+
+	public static class 求和表达式Context extends ParserRuleContext {
+		public 求积表达式Context 求积表达式() {
+			return getRuleContext(求积表达式Context.class,0);
+		}
+		public 求和表达式Context 求和表达式() {
+			return getRuleContext(求和表达式Context.class,0);
+		}
+		public 求和表达式Context(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_求和表达式; }
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof 圈5Visitor ) return ((圈5Visitor<? extends T>)visitor).visit求和表达式(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final 求和表达式Context 求和表达式() throws RecognitionException {
+		return 求和表达式(0);
+	}
+
+	private 求和表达式Context 求和表达式(int _p) throws RecognitionException {
+		ParserRuleContext _parentctx = _ctx;
+		int _parentState = getState();
+		求和表达式Context _localctx = new 求和表达式Context(_ctx, _parentState);
+		求和表达式Context _prevctx = _localctx;
+		int _startState = 10;
+		enterRecursionRule(_localctx, 10, RULE_求和表达式, _p);
+		try {
+			int _alt;
+			enterOuterAlt(_localctx, 1);
+			{
+			{
+			setState(83);
+			求积表达式(0);
+			}
+			_ctx.stop = _input.LT(-1);
+			setState(93);
+			_errHandler.sync(this);
+			_alt = getInterpreter().adaptivePredict(_input,7,_ctx);
+			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
+				if ( _alt==1 ) {
+					if ( _parseListeners!=null ) triggerExitRuleEvent();
+					_prevctx = _localctx;
+					{
+					setState(91);
+					_errHandler.sync(this);
+					switch ( getInterpreter().adaptivePredict(_input,6,_ctx) ) {
+					case 1:
+						{
+						_localctx = new 求和表达式Context(_parentctx, _parentState);
+						pushNewRecursionContext(_localctx, _startState, RULE_求和表达式);
+						setState(85);
+						if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");
+						setState(86);
 						match(T加);
-						setState(33);
+						setState(87);
 						求积表达式(0);
 						}
 						break;
 					case 2:
 						{
-						_localctx = new 表达式Context(_parentctx, _parentState);
-						pushNewRecursionContext(_localctx, _startState, RULE_表达式);
-						setState(34);
+						_localctx = new 求和表达式Context(_parentctx, _parentState);
+						pushNewRecursionContext(_localctx, _startState, RULE_求和表达式);
+						setState(88);
 						if (!(precpred(_ctx, 1))) throw new FailedPredicateException(this, "precpred(_ctx, 1)");
-						setState(35);
+						setState(89);
 						match(T減);
-						setState(36);
+						setState(90);
 						求积表达式(0);
 						}
 						break;
 					}
 					} 
 				}
-				setState(41);
+				setState(95);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,3,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,7,_ctx);
 			}
 			}
 		}
@@ -353,37 +650,37 @@ public class 圈5Parser extends Parser {
 		int _parentState = getState();
 		求积表达式Context _localctx = new 求积表达式Context(_ctx, _parentState);
 		求积表达式Context _prevctx = _localctx;
-		int _startState = 6;
-		enterRecursionRule(_localctx, 6, RULE_求积表达式, _p);
+		int _startState = 12;
+		enterRecursionRule(_localctx, 12, RULE_求积表达式, _p);
 		try {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
 			{
-			setState(43);
+			setState(97);
 			最小表达式();
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(59);
+			setState(113);
 			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,5,_ctx);
+			_alt = getInterpreter().adaptivePredict(_input,9,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
 					_prevctx = _localctx;
 					{
-					setState(57);
+					setState(111);
 					_errHandler.sync(this);
-					switch ( getInterpreter().adaptivePredict(_input,4,_ctx) ) {
+					switch ( getInterpreter().adaptivePredict(_input,8,_ctx) ) {
 					case 1:
 						{
 						_localctx = new 求积表达式Context(_parentctx, _parentState);
 						pushNewRecursionContext(_localctx, _startState, RULE_求积表达式);
-						setState(45);
+						setState(99);
 						if (!(precpred(_ctx, 4))) throw new FailedPredicateException(this, "precpred(_ctx, 4)");
-						setState(46);
+						setState(100);
 						match(T乘);
-						setState(47);
+						setState(101);
 						最小表达式();
 						}
 						break;
@@ -391,11 +688,11 @@ public class 圈5Parser extends Parser {
 						{
 						_localctx = new 求积表达式Context(_parentctx, _parentState);
 						pushNewRecursionContext(_localctx, _startState, RULE_求积表达式);
-						setState(48);
+						setState(102);
 						if (!(precpred(_ctx, 3))) throw new FailedPredicateException(this, "precpred(_ctx, 3)");
-						setState(49);
+						setState(103);
 						match(T除);
-						setState(50);
+						setState(104);
 						最小表达式();
 						}
 						break;
@@ -403,11 +700,11 @@ public class 圈5Parser extends Parser {
 						{
 						_localctx = new 求积表达式Context(_parentctx, _parentState);
 						pushNewRecursionContext(_localctx, _startState, RULE_求积表达式);
-						setState(51);
+						setState(105);
 						if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");
-						setState(52);
+						setState(106);
 						match(T数乘);
-						setState(53);
+						setState(107);
 						最小表达式();
 						}
 						break;
@@ -415,20 +712,20 @@ public class 圈5Parser extends Parser {
 						{
 						_localctx = new 求积表达式Context(_parentctx, _parentState);
 						pushNewRecursionContext(_localctx, _startState, RULE_求积表达式);
-						setState(54);
+						setState(108);
 						if (!(precpred(_ctx, 1))) throw new FailedPredicateException(this, "precpred(_ctx, 1)");
-						setState(55);
+						setState(109);
 						match(T数除);
-						setState(56);
+						setState(110);
 						最小表达式();
 						}
 						break;
 					}
 					} 
 				}
-				setState(61);
+				setState(115);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,5,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,9,_ctx);
 			}
 			}
 		}
@@ -463,28 +760,28 @@ public class 圈5Parser extends Parser {
 
 	public final 最小表达式Context 最小表达式() throws RecognitionException {
 		最小表达式Context _localctx = new 最小表达式Context(_ctx, getState());
-		enterRule(_localctx, 8, RULE_最小表达式);
+		enterRule(_localctx, 14, RULE_最小表达式);
 		try {
-			setState(67);
+			setState(121);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case T变量名:
 			case T数:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(62);
+				setState(116);
 				字面量();
 				}
 				break;
-			case T__1:
+			case T__11:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(63);
-				match(T__1);
-				setState(64);
-				表达式(0);
-				setState(65);
-				match(T__2);
+				setState(117);
+				match(T__11);
+				setState(118);
+				表达式();
+				setState(119);
+				match(T__12);
 				}
 				break;
 			default:
@@ -518,12 +815,12 @@ public class 圈5Parser extends Parser {
 
 	public final 字面量Context 字面量() throws RecognitionException {
 		字面量Context _localctx = new 字面量Context(_ctx, getState());
-		enterRule(_localctx, 10, RULE_字面量);
+		enterRule(_localctx, 16, RULE_字面量);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(69);
+			setState(123);
 			_la = _input.LA(1);
 			if ( !(_la==T变量名 || _la==T数) ) {
 			_errHandler.recoverInline(this);
@@ -548,56 +845,103 @@ public class 圈5Parser extends Parser {
 
 	public boolean sempred(RuleContext _localctx, int ruleIndex, int predIndex) {
 		switch (ruleIndex) {
-		case 2:
-			return 表达式_sempred((表达式Context)_localctx, predIndex);
 		case 3:
+			return 等同判断表达式_sempred((等同判断表达式Context)_localctx, predIndex);
+		case 4:
+			return 比较表达式_sempred((比较表达式Context)_localctx, predIndex);
+		case 5:
+			return 求和表达式_sempred((求和表达式Context)_localctx, predIndex);
+		case 6:
 			return 求积表达式_sempred((求积表达式Context)_localctx, predIndex);
 		}
 		return true;
 	}
-	private boolean 表达式_sempred(表达式Context _localctx, int predIndex) {
+	private boolean 等同判断表达式_sempred(等同判断表达式Context _localctx, int predIndex) {
 		switch (predIndex) {
 		case 0:
-			return precpred(_ctx, 2);
+			return precpred(_ctx, 4);
 		case 1:
+			return precpred(_ctx, 3);
+		case 2:
+			return precpred(_ctx, 2);
+		case 3:
+			return precpred(_ctx, 1);
+		}
+		return true;
+	}
+	private boolean 比较表达式_sempred(比较表达式Context _localctx, int predIndex) {
+		switch (predIndex) {
+		case 4:
+			return precpred(_ctx, 6);
+		case 5:
+			return precpred(_ctx, 5);
+		case 6:
+			return precpred(_ctx, 4);
+		case 7:
+			return precpred(_ctx, 3);
+		case 8:
+			return precpred(_ctx, 2);
+		case 9:
+			return precpred(_ctx, 1);
+		}
+		return true;
+	}
+	private boolean 求和表达式_sempred(求和表达式Context _localctx, int predIndex) {
+		switch (predIndex) {
+		case 10:
+			return precpred(_ctx, 2);
+		case 11:
 			return precpred(_ctx, 1);
 		}
 		return true;
 	}
 	private boolean 求积表达式_sempred(求积表达式Context _localctx, int predIndex) {
 		switch (predIndex) {
-		case 2:
+		case 12:
 			return precpred(_ctx, 4);
-		case 3:
+		case 13:
 			return precpred(_ctx, 3);
-		case 4:
+		case 14:
 			return precpred(_ctx, 2);
-		case 5:
+		case 15:
 			return precpred(_ctx, 1);
 		}
 		return true;
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\16J\4\2\t\2\4\3\t"+
-		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\3\2\6\2\20\n\2\r\2\16\2\21\3\3\3\3"+
-		"\3\3\3\3\3\3\3\3\3\3\3\3\3\3\5\3\35\n\3\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3"+
-		"\4\3\4\7\4(\n\4\f\4\16\4+\13\4\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5"+
-		"\3\5\3\5\3\5\3\5\3\5\7\5<\n\5\f\5\16\5?\13\5\3\6\3\6\3\6\3\6\3\6\5\6F"+
-		"\n\6\3\7\3\7\3\7\2\4\6\b\b\2\4\6\b\n\f\2\3\3\2\6\7\2M\2\17\3\2\2\2\4\34"+
-		"\3\2\2\2\6\36\3\2\2\2\b,\3\2\2\2\nE\3\2\2\2\fG\3\2\2\2\16\20\5\4\3\2\17"+
-		"\16\3\2\2\2\20\21\3\2\2\2\21\17\3\2\2\2\21\22\3\2\2\2\22\3\3\2\2\2\23"+
-		"\24\5\6\4\2\24\25\7\16\2\2\25\35\3\2\2\2\26\27\7\6\2\2\27\30\7\3\2\2\30"+
-		"\31\5\6\4\2\31\32\7\16\2\2\32\35\3\2\2\2\33\35\7\16\2\2\34\23\3\2\2\2"+
-		"\34\26\3\2\2\2\34\33\3\2\2\2\35\5\3\2\2\2\36\37\b\4\1\2\37 \5\b\5\2 )"+
-		"\3\2\2\2!\"\f\4\2\2\"#\7\b\2\2#(\5\b\5\2$%\f\3\2\2%&\7\t\2\2&(\5\b\5\2"+
-		"\'!\3\2\2\2\'$\3\2\2\2(+\3\2\2\2)\'\3\2\2\2)*\3\2\2\2*\7\3\2\2\2+)\3\2"+
-		"\2\2,-\b\5\1\2-.\5\n\6\2.=\3\2\2\2/\60\f\6\2\2\60\61\7\n\2\2\61<\5\n\6"+
-		"\2\62\63\f\5\2\2\63\64\7\f\2\2\64<\5\n\6\2\65\66\f\4\2\2\66\67\7\13\2"+
-		"\2\67<\5\n\6\289\f\3\2\29:\7\r\2\2:<\5\n\6\2;/\3\2\2\2;\62\3\2\2\2;\65"+
-		"\3\2\2\2;8\3\2\2\2<?\3\2\2\2=;\3\2\2\2=>\3\2\2\2>\t\3\2\2\2?=\3\2\2\2"+
-		"@F\5\f\7\2AB\7\4\2\2BC\5\6\4\2CD\7\5\2\2DF\3\2\2\2E@\3\2\2\2EA\3\2\2\2"+
-		"F\13\3\2\2\2GH\t\2\2\2H\r\3\2\2\2\t\21\34\');=E";
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\30\u0080\4\2\t\2"+
+		"\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\3\2\6"+
+		"\2\26\n\2\r\2\16\2\27\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\5\3#\n\3\3\4"+
+		"\3\4\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\7\5\66"+
+		"\n\5\f\5\16\59\13\5\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3"+
+		"\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\7\6P\n\6\f\6\16\6S\13\6\3\7\3\7\3\7"+
+		"\3\7\3\7\3\7\3\7\3\7\3\7\7\7^\n\7\f\7\16\7a\13\7\3\b\3\b\3\b\3\b\3\b\3"+
+		"\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\7\br\n\b\f\b\16\bu\13\b\3\t\3\t"+
+		"\3\t\3\t\3\t\5\t|\n\t\3\n\3\n\3\n\2\6\b\n\f\16\13\2\4\6\b\n\f\16\20\22"+
+		"\2\3\3\2\20\21\2\u008a\2\25\3\2\2\2\4\"\3\2\2\2\6$\3\2\2\2\b&\3\2\2\2"+
+		"\n:\3\2\2\2\fT\3\2\2\2\16b\3\2\2\2\20{\3\2\2\2\22}\3\2\2\2\24\26\5\4\3"+
+		"\2\25\24\3\2\2\2\26\27\3\2\2\2\27\25\3\2\2\2\27\30\3\2\2\2\30\3\3\2\2"+
+		"\2\31\32\5\6\4\2\32\33\7\30\2\2\33#\3\2\2\2\34\35\7\20\2\2\35\36\7\3\2"+
+		"\2\36\37\5\6\4\2\37 \7\30\2\2 #\3\2\2\2!#\7\30\2\2\"\31\3\2\2\2\"\34\3"+
+		"\2\2\2\"!\3\2\2\2#\5\3\2\2\2$%\5\b\5\2%\7\3\2\2\2&\'\b\5\1\2\'(\5\n\6"+
+		"\2(\67\3\2\2\2)*\f\6\2\2*+\7\4\2\2+\66\5\n\6\2,-\f\5\2\2-.\7\5\2\2.\66"+
+		"\5\n\6\2/\60\f\4\2\2\60\61\7\6\2\2\61\66\5\n\6\2\62\63\f\3\2\2\63\64\7"+
+		"\7\2\2\64\66\5\n\6\2\65)\3\2\2\2\65,\3\2\2\2\65/\3\2\2\2\65\62\3\2\2\2"+
+		"\669\3\2\2\2\67\65\3\2\2\2\678\3\2\2\28\t\3\2\2\29\67\3\2\2\2:;\b\6\1"+
+		"\2;<\5\f\7\2<Q\3\2\2\2=>\f\b\2\2>?\7\b\2\2?P\5\f\7\2@A\f\7\2\2AB\7\t\2"+
+		"\2BP\5\f\7\2CD\f\6\2\2DE\7\n\2\2EP\5\f\7\2FG\f\5\2\2GH\7\13\2\2HP\5\f"+
+		"\7\2IJ\f\4\2\2JK\7\f\2\2KP\5\f\7\2LM\f\3\2\2MN\7\r\2\2NP\5\f\7\2O=\3\2"+
+		"\2\2O@\3\2\2\2OC\3\2\2\2OF\3\2\2\2OI\3\2\2\2OL\3\2\2\2PS\3\2\2\2QO\3\2"+
+		"\2\2QR\3\2\2\2R\13\3\2\2\2SQ\3\2\2\2TU\b\7\1\2UV\5\16\b\2V_\3\2\2\2WX"+
+		"\f\4\2\2XY\7\22\2\2Y^\5\16\b\2Z[\f\3\2\2[\\\7\23\2\2\\^\5\16\b\2]W\3\2"+
+		"\2\2]Z\3\2\2\2^a\3\2\2\2_]\3\2\2\2_`\3\2\2\2`\r\3\2\2\2a_\3\2\2\2bc\b"+
+		"\b\1\2cd\5\20\t\2ds\3\2\2\2ef\f\6\2\2fg\7\24\2\2gr\5\20\t\2hi\f\5\2\2"+
+		"ij\7\26\2\2jr\5\20\t\2kl\f\4\2\2lm\7\25\2\2mr\5\20\t\2no\f\3\2\2op\7\27"+
+		"\2\2pr\5\20\t\2qe\3\2\2\2qh\3\2\2\2qk\3\2\2\2qn\3\2\2\2ru\3\2\2\2sq\3"+
+		"\2\2\2st\3\2\2\2t\17\3\2\2\2us\3\2\2\2v|\5\22\n\2wx\7\16\2\2xy\5\6\4\2"+
+		"yz\7\17\2\2z|\3\2\2\2{v\3\2\2\2{w\3\2\2\2|\21\3\2\2\2}~\t\2\2\2~\23\3"+
+		"\2\2\2\r\27\"\65\67OQ]_qs{";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
