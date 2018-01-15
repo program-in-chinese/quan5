@@ -2,8 +2,6 @@ package com.中文编程.圈5.分析器;
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
-import org.antlr.v4.runtime.tree.ParseTree;
-import org.antlr.v4.runtime.tree.TerminalNode;
 import org.antlr.v4.runtime.tree.TerminalNodeImpl;
 
 import com.中文编程.圈5.分析器.圈5Parser.声明Context;
@@ -81,14 +79,10 @@ public class 定制访问器 extends 圈5BaseVisitor<节点> {
 
   @Override
   public 节点 visit字面量(字面量Context 上下文) {
-    ParseTree 子节点 = 上下文.getChild(0);
-    TerminalNode 数 = (TerminalNode) 子节点;
-    int 类型 = ((TerminalNodeImpl) 子节点).symbol.getType();
-    if (类型 == 圈5Parser.T数) {
-      return 数 instanceof ErrorNode ? null : new 数节点(数.getText());
-    } else {
-      return 数 instanceof ErrorNode ? null : new 变量节点(数.getText());
-    }
+    TerminalNodeImpl 子节点 = (TerminalNodeImpl) (上下文.getChild(0));
+    return 子节点 instanceof ErrorNode
+        ? null
+        : 子节点.symbol.getType() == 圈5Parser.T数 ? new 数节点(子节点.getText()) : new 变量节点(子节点.getText());
   }
 
   private 节点 构建运算节点(运算符号 运算符, ParserRuleContext 原始左节点, 节点 右节点) {
