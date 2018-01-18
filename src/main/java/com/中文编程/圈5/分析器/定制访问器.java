@@ -58,50 +58,22 @@ public class 定制访问器 extends 圈5BaseVisitor<节点> {
 
   @Override
   public 节点 visit等同判断表达式(等同判断表达式Context 上下文) {
-    节点 比较节点 = visit(上下文.比较表达式());
-    if (上下文.等同判断表达式() == null) {
-      return 比较节点;
-    } else {
-      //运算符号 运算符 =
-      //    ((TerminalNodeImpl) 上下文.getChild(1)).symbol.getType() == 圈5Parser.T加 ? 运算符号.加 : 运算符号.減;
-      return 构建运算节点(取运算符(上下文), 上下文.等同判断表达式(), 比较节点);
-    }
+    return 以本身向右扩展为运算节点(上下文, 上下文.等同判断表达式(), 上下文.比较表达式());
   }
 
   @Override
   public 节点 visit比较表达式(比较表达式Context 上下文) {
-    节点 求和节点 = visit(上下文.求和表达式());
-    if (上下文.比较表达式() == null) {
-      return 求和节点;
-    } else {
-      //运算符号 运算符 =
-      //    ((TerminalNodeImpl) 上下文.getChild(1)).symbol.getType() == 圈5Parser.T加 ? 运算符号.加 : 运算符号.減;
-      return 构建运算节点(取运算符(上下文), 上下文.比较表达式(), 求和节点);
-    }
+    return 以本身向右扩展为运算节点(上下文, 上下文.比较表达式(), 上下文.求和表达式());
   }
 
   @Override
   public 节点 visit求和表达式(求和表达式Context 上下文) {
-    节点 求积节点 = visit(上下文.求积表达式());
-    if (上下文.求和表达式() == null) {
-      return 求积节点;
-    } else {
-      //运算符号 运算符 =
-      //    ((TerminalNodeImpl) 上下文.getChild(1)).symbol.getType() == 圈5Parser.T加 ? 运算符号.加 : 运算符号.減;
-      return 构建运算节点(取运算符(上下文), 上下文.求和表达式(), 求积节点);
-    }
+    return 以本身向右扩展为运算节点(上下文, 上下文.求和表达式(), 上下文.求积表达式());
   }
 
   @Override
   public 节点 visit求积表达式(求积表达式Context 上下文) {
-    节点 最小节点 = visit(上下文.最小表达式());
-    if (上下文.求积表达式() == null) {
-      return 最小节点;
-    } else {
-      //int 最后运算符 = ((TerminalNodeImpl) 上下文.getChild(1)).symbol.getType();
-      //运算符号 运算符 = (最后运算符 == 圈5Parser.T乘 || 最后运算符 == 圈5Parser.T数乘) ? 运算符号.乘 : 运算符号.除;
-      return 构建运算节点(取运算符(上下文), 上下文.求积表达式(), 最小节点);
-    }
+    return 以本身向右扩展为运算节点(上下文, 上下文.求积表达式(), 上下文.最小表达式());
   }
 
   @Override
@@ -115,6 +87,15 @@ public class 定制访问器 extends 圈5BaseVisitor<节点> {
     return 子节点 instanceof ErrorNode
         ? null
         : 子节点.symbol.getType() == 圈5Parser.T数 ? new 数节点(子节点.getText()) : new 变量节点(子节点.getText());
+  }
+
+  private 节点 以本身向右扩展为运算节点(ParserRuleContext 上下文, ParserRuleContext 本身子节点, ParserRuleContext 扩展子节点) {
+    节点 比较节点 = visit(扩展子节点);
+    if (本身子节点 == null) {
+      return 比较节点;
+    } else {
+      return 构建运算节点(取运算符(上下文), 本身子节点, 比较节点);
+    }
   }
 
   // 第二个子节点为运算符
@@ -138,6 +119,7 @@ public class 定制访问器 extends 圈5BaseVisitor<节点> {
         return null;
     }
   }
+
   private 节点 构建运算节点(运算符号 运算符, ParserRuleContext 原始左节点, 节点 右节点) {
     运算式节点 节点 = new 运算式节点();
     节点.运算符 = 运算符;

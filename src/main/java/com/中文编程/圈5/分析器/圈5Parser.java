@@ -19,7 +19,7 @@ public class 圈5Parser extends Parser {
 	public static final int
 		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9, 
 		T__9=10, T__10=11, T为=12, T变量名=13, T数=14, T加=15, T減=16, T乘=17, T数乘=18, 
-		T除=19, T数除=20, T相等=21, T新行=22;
+		T除=19, T数除=20, T相等=21, T新行=22, T空格=23;
 	public static final int
 		RULE_程序 = 0, RULE_声明 = 1, RULE_表达式 = 2, RULE_等同判断表达式 = 3, RULE_比较表达式 = 4, 
 		RULE_求和表达式 = 5, RULE_求积表达式 = 6, RULE_最小表达式 = 7, RULE_字面量 = 8;
@@ -35,7 +35,8 @@ public class 圈5Parser extends Parser {
 	private static final String[] _SYMBOLIC_NAMES = {
 		null, null, null, null, null, null, null, null, null, null, null, null, 
 		"T\u0001", "T\u0001\u0002\u0003", "T\u0001", "T\u0001", "T\u0001", "T\u0001", 
-		"T\u0001\u0002", "T\u0001", "T\u0001\u0002", "T\u0001\u0002", "T\u0001\u0002"
+		"T\u0001\u0002", "T\u0001", "T\u0001\u0002", "T\u0001\u0002", "T\u0001\u0002", 
+		"T\u0001\u0002"
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -910,7 +911,7 @@ public class 圈5Parser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\30\u0080\4\2\t\2"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\31\u0080\4\2\t\2"+
 		"\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\3\2\6"+
 		"\2\26\n\2\r\2\16\2\27\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\5\3#\n\3\3\4"+
 		"\3\4\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\7\5\66"+
