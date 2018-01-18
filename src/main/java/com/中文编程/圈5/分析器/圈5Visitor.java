@@ -44,6 +44,24 @@ public interface 圈5Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visit表达式(圈5Parser.表达式Context ctx);
 	/**
+	 * Visit a parse tree produced by {@link 圈5Parser#等同判断表达式}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visit等同判断表达式(圈5Parser.等同判断表达式Context ctx);
+	/**
+	 * Visit a parse tree produced by {@link 圈5Parser#比较表达式}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visit比较表达式(圈5Parser.比较表达式Context ctx);
+	/**
+	 * Visit a parse tree produced by {@link 圈5Parser#求和表达式}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visit求和表达式(圈5Parser.求和表达式Context ctx);
+	/**
 	 * Visit a parse tree produced by {@link 圈5Parser#求积表达式}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
