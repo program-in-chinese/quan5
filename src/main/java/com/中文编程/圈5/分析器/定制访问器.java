@@ -115,6 +115,19 @@ public class 定制访问器 extends 圈5BaseVisitor<节点> {
       case 圈5Parser.T相等:
       case 圈5Parser.T为:
         return 运算符号.相等;
+      case 圈5Parser.T不等:
+      case 圈5Parser.T数不等:
+        return 运算符号.不等;
+      case 圈5Parser.T大于:
+        return 运算符号.大于;
+      case 圈5Parser.T小于:
+        return 运算符号.小于;
+      case 圈5Parser.T小于等于:
+      case 圈5Parser.T数小于等于:
+        return 运算符号.小于等于;
+      case 圈5Parser.T大于等于:
+      case 圈5Parser.T数大于等于:
+        return 运算符号.大于等于;
       default:
         return null;
     }

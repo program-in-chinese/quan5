@@ -54,6 +54,11 @@ public class 运行器 {
         case 乘: return (int)左结果 * (int)右结果;
         case 除: return (int)左结果 / (int)右结果;
         case 相等: return 左结果 == 右结果;
+        case 不等: return 左结果 != 右结果;
+        case 大于: return (int)左结果 > (int)右结果;
+        case 小于: return (int)左结果 < (int)右结果;
+        case 大于等于: return (int)左结果 >= (int)右结果;
+        case 小于等于: return (int)左结果 <= (int)右结果;
         case 赋值:
           变量值表.put(((变量节点)((运算式节点)节点).左子节点).取变量名(), 右结果);
           // 顺延
