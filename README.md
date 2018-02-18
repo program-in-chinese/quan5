@@ -6,5 +6,13 @@
 
 antlr4生成分析器源码(Java)
 ```
-$ java -cp "../../../../../../../lib/antlr-4.7-complete.jar:$CLASSPATH" org.antlr.v4.Tool -package com.中文编程.圈5.分析器 -visitor -no-listener 圈5.g4
+$ cd src/main/java
+$ java -cp "../../../lib/antlr-4.7-complete.jar:$CLASSPATH" org.antlr.v4.Tool -package com.中文编程.圈5.分析器 -visitor -no-listener 圈5.g4
+```
+
+命令行中使用生成的antlr4分析器分析测试程序:
+```
+$ javac -cp "../../../lib/antlr-4.7-complete.jar:$CLASSPATH" com/中文编程/圈5/分析器/圈5*.java
+$ alias grun='java -cp "{path to antlr-4.7-complete.jar}:$CLASSPATH" org.antlr.v4.runtime.misc.TestRig'
+$ grun com.中文编程.圈5.分析器.圈5 程序 -tree
 ```

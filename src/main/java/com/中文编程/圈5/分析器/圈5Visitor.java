@@ -17,26 +17,29 @@ public interface 圈5Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visit程序(圈5Parser.程序Context ctx);
 	/**
-	 * Visit a parse tree produced by the {@code 求值}
-	 * labeled alternative in {@link 圈5Parser#声明}.
+	 * Visit a parse tree produced by {@link 圈5Parser#声明}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visit求值(圈5Parser.求值Context ctx);
+	T visit声明(圈5Parser.声明Context ctx);
 	/**
-	 * Visit a parse tree produced by the {@code 赋值}
-	 * labeled alternative in {@link 圈5Parser#声明}.
+	 * Visit a parse tree produced by {@link 圈5Parser#如果声明}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visit赋值(圈5Parser.赋值Context ctx);
+	T visit如果声明(圈5Parser.如果声明Context ctx);
 	/**
-	 * Visit a parse tree produced by the {@code 空行}
-	 * labeled alternative in {@link 圈5Parser#声明}.
+	 * Visit a parse tree produced by {@link 圈5Parser#赋值声明}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visit空行(圈5Parser.空行Context ctx);
+	T visit赋值声明(圈5Parser.赋值声明Context ctx);
+	/**
+	 * Visit a parse tree produced by {@link 圈5Parser#求值声明}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visit求值声明(圈5Parser.求值声明Context ctx);
 	/**
 	 * Visit a parse tree produced by {@link 圈5Parser#表达式}.
 	 * @param ctx the parse tree

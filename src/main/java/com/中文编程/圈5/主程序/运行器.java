@@ -13,6 +13,7 @@ import com.中文编程.圈5.分析器.圈5Parser;
 import com.中文编程.圈5.分析器.定制访问器;
 import com.中文编程.圈5.语法树.变量节点;
 import com.中文编程.圈5.语法树.数节点;
+import com.中文编程.圈5.语法树.条件节点;
 import com.中文编程.圈5.语法树.节点;
 import com.中文编程.圈5.语法树.运算式节点;
 import com.中文编程.圈5.语法树.运算符号;
@@ -69,6 +70,14 @@ public class 运行器 {
       return 变量值表.get(((变量节点)节点).取变量名());
     } else if (节点 instanceof 数节点) {
       return ((数节点)节点).求值();
+    } else if (节点 instanceof 条件节点) {
+      Object 条件 = 求值(((条件节点) 节点).条件);
+      if (条件 instanceof Boolean) {
+        return (boolean)条件 ? 求值(((条件节点) 节点).条件为真分支) : null;
+      } else {
+        System.err.println("[运行时错误] 条件部分需为布尔值: " + ((条件节点) 节点).条件.原始文本);
+        return null;
+      }
     } else {
       for(节点 子节点 : 节点.子节点) {
         返回值 = 求值(子节点);

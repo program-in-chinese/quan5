@@ -5,18 +5,20 @@ import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNodeImpl;
 
 import com.中文编程.圈5.分析器.圈5Parser.声明Context;
+import com.中文编程.圈5.分析器.圈5Parser.如果声明Context;
 import com.中文编程.圈5.分析器.圈5Parser.字面量Context;
 import com.中文编程.圈5.分析器.圈5Parser.最小表达式Context;
 import com.中文编程.圈5.分析器.圈5Parser.比较表达式Context;
-import com.中文编程.圈5.分析器.圈5Parser.求值Context;
+import com.中文编程.圈5.分析器.圈5Parser.求值声明Context;
 import com.中文编程.圈5.分析器.圈5Parser.求和表达式Context;
 import com.中文编程.圈5.分析器.圈5Parser.求积表达式Context;
 import com.中文编程.圈5.分析器.圈5Parser.程序Context;
 import com.中文编程.圈5.分析器.圈5Parser.等同判断表达式Context;
 import com.中文编程.圈5.分析器.圈5Parser.表达式Context;
-import com.中文编程.圈5.分析器.圈5Parser.赋值Context;
+import com.中文编程.圈5.分析器.圈5Parser.赋值声明Context;
 import com.中文编程.圈5.语法树.变量节点;
 import com.中文编程.圈5.语法树.数节点;
+import com.中文编程.圈5.语法树.条件节点;
 import com.中文编程.圈5.语法树.节点;
 import com.中文编程.圈5.语法树.运算式节点;
 import com.中文编程.圈5.语法树.运算符号;
@@ -35,7 +37,7 @@ public class 定制访问器 extends 圈5BaseVisitor<节点> {
   // 以下为声明部分
 
   @Override
-  public 节点 visit赋值(赋值Context 上下文) {
+  public 节点 visit赋值声明(赋值声明Context 上下文) {
     String 变量名 = 上下文.T变量名().getText();
     运算式节点 节点 = new 运算式节点();
     节点.运算符 = 运算符号.赋值;
@@ -45,8 +47,17 @@ public class 定制访问器 extends 圈5BaseVisitor<节点> {
   }
 
   @Override
-  public 节点 visit求值(求值Context 上下文) {
+  public 节点 visit求值声明(求值声明Context 上下文) {
     return visit(上下文.表达式());
+  }
+
+  @Override
+  public 节点 visit如果声明(如果声明Context 上下文) {
+    条件节点 节点 = new 条件节点();
+    节点.条件 = visit(上下文.表达式());
+    节点.条件.原始文本 = 上下文.表达式().getText();
+    节点.条件为真分支 = visit(上下文.声明());
+    return 节点;
   }
 
   // 以下为表达式部分
