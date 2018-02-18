@@ -21,11 +21,11 @@ public class 圈5Parser extends Parser {
 		T数乘=11, T除=12, T数除=13, T相等=14, T大于=15, T小于=16, T大于等于=17, T数大于等于=18, T小于等于=19, 
 		T数小于等于=20, T不等=21, T数不等=22, T新行=23, T空格=24;
 	public static final int
-		RULE_程序 = 0, RULE_声明 = 1, RULE_如果声明 = 2, RULE_赋值声明 = 3, RULE_求值声明 = 4, 
+		RULE_程序 = 0, RULE_声明 = 1, RULE_条件声明 = 2, RULE_赋值声明 = 3, RULE_求值声明 = 4, 
 		RULE_表达式 = 5, RULE_等同判断表达式 = 6, RULE_比较表达式 = 7, RULE_求和表达式 = 8, RULE_求积表达式 = 9, 
 		RULE_最小表达式 = 10, RULE_字面量 = 11;
 	public static final String[] ruleNames = {
-		"程序", "声明", "如果声明", "赋值声明", "求值声明", "表达式", "等同判断表达式", "比较表达式", "求和表达式", 
+		"程序", "声明", "条件声明", "赋值声明", "求值声明", "表达式", "等同判断表达式", "比较表达式", "求和表达式", 
 		"求积表达式", "最小表达式", "字面量"
 	};
 
@@ -146,8 +146,8 @@ public class 圈5Parser extends Parser {
 		public 赋值声明Context 赋值声明() {
 			return getRuleContext(赋值声明Context.class,0);
 		}
-		public 如果声明Context 如果声明() {
-			return getRuleContext(如果声明Context.class,0);
+		public 条件声明Context 条件声明() {
+			return getRuleContext(条件声明Context.class,0);
 		}
 		public 求值声明Context 求值声明() {
 			return getRuleContext(求值声明Context.class,0);
@@ -182,7 +182,7 @@ public class 圈5Parser extends Parser {
 				enterOuterAlt(_localctx, 2);
 				{
 				setState(30);
-				如果声明();
+				条件声明();
 				}
 				break;
 			case 3:
@@ -212,27 +212,27 @@ public class 圈5Parser extends Parser {
 		return _localctx;
 	}
 
-	public static class 如果声明Context extends ParserRuleContext {
+	public static class 条件声明Context extends ParserRuleContext {
 		public 表达式Context 表达式() {
 			return getRuleContext(表达式Context.class,0);
 		}
 		public 声明Context 声明() {
 			return getRuleContext(声明Context.class,0);
 		}
-		public 如果声明Context(ParserRuleContext parent, int invokingState) {
+		public 条件声明Context(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_如果声明; }
+		@Override public int getRuleIndex() { return RULE_条件声明; }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof 圈5Visitor ) return ((圈5Visitor<? extends T>)visitor).visit如果声明(this);
+			if ( visitor instanceof 圈5Visitor ) return ((圈5Visitor<? extends T>)visitor).visit条件声明(this);
 			else return visitor.visitChildren(this);
 		}
 	}
 
-	public final 如果声明Context 如果声明() throws RecognitionException {
-		如果声明Context _localctx = new 如果声明Context(_ctx, getState());
-		enterRule(_localctx, 4, RULE_如果声明);
+	public final 条件声明Context 条件声明() throws RecognitionException {
+		条件声明Context _localctx = new 条件声明Context(_ctx, getState());
+		enterRule(_localctx, 4, RULE_条件声明);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{

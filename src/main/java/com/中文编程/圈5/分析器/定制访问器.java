@@ -5,9 +5,9 @@ import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNodeImpl;
 
 import com.中文编程.圈5.分析器.圈5Parser.声明Context;
-import com.中文编程.圈5.分析器.圈5Parser.如果声明Context;
 import com.中文编程.圈5.分析器.圈5Parser.字面量Context;
 import com.中文编程.圈5.分析器.圈5Parser.最小表达式Context;
+import com.中文编程.圈5.分析器.圈5Parser.条件声明Context;
 import com.中文编程.圈5.分析器.圈5Parser.比较表达式Context;
 import com.中文编程.圈5.分析器.圈5Parser.求值声明Context;
 import com.中文编程.圈5.分析器.圈5Parser.求和表达式Context;
@@ -52,7 +52,7 @@ public class 定制访问器 extends 圈5BaseVisitor<节点> {
   }
 
   @Override
-  public 节点 visit如果声明(如果声明Context 上下文) {
+  public 节点 visit条件声明(条件声明Context 上下文) {
     条件节点 节点 = new 条件节点();
     节点.条件 = visit(上下文.表达式());
     节点.条件.原始文本 = 上下文.表达式().getText();

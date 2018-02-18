@@ -23,11 +23,11 @@ public interface 圈5Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visit声明(圈5Parser.声明Context ctx);
 	/**
-	 * Visit a parse tree produced by {@link 圈5Parser#如果声明}.
+	 * Visit a parse tree produced by {@link 圈5Parser#条件声明}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visit如果声明(圈5Parser.如果声明Context ctx);
+	T visit条件声明(圈5Parser.条件声明Context ctx);
 	/**
 	 * Visit a parse tree produced by {@link 圈5Parser#赋值声明}.
 	 * @param ctx the parse tree
